@@ -14,6 +14,10 @@ describe 'Simditor Toolbar Module', ->
   compareArray = (arr1, arr2) ->
     arr1.toString() == arr2.toString()
 
+  it 'should render toolbar to editor\'s wrapper', ->
+    expect(editor.wrapper.find('.simditor-toolbar')).toExist()
+    expect(editor.wrapper.find('.simditor-toolbar  >ul > li >.toolbar-item').length).toBe(toolbar.length)
+
   it 'should float toolbar when scroll down', ->
     expect(editor.toolbar.wrapper).not.toHaveClass('toolbar-floating')
     $('body').css('height', '2000')
@@ -33,9 +37,6 @@ describe 'Simditor Toolbar Module', ->
     nameArray.push button.name for button in editor.toolbar.buttons
     expect(compareArray(nameArray, toolbar)).toBeTruthy()
 
-  it 'should render toolbar to editor\'s wrapper', ->
-    expect(editor.wrapper.find('.simditor-toolbar')).toExist()
-    expect(editor.wrapper.find('.simditor-toolbar  >ul > li >.toolbar-item').length).toBe(toolbar.length)
 
   it 'should find correct button when call findButton', ->
     expect(editor.toolbar.findButton('bold').name).toBe('bold')

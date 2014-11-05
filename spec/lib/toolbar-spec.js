@@ -19,6 +19,10 @@
     compareArray = function(arr1, arr2) {
       return arr1.toString() === arr2.toString();
     };
+    it('should render toolbar to editor\'s wrapper', function() {
+      expect(editor.wrapper.find('.simditor-toolbar')).toExist();
+      return expect(editor.wrapper.find('.simditor-toolbar  >ul > li >.toolbar-item').length).toBe(toolbar.length);
+    });
     it('should float toolbar when scroll down', function() {
       expect(editor.toolbar.wrapper).not.toHaveClass('toolbar-floating');
       $('body').css('height', '2000');
@@ -42,10 +46,6 @@
         nameArray.push(button.name);
       }
       return expect(compareArray(nameArray, toolbar)).toBeTruthy();
-    });
-    it('should render toolbar to editor\'s wrapper', function() {
-      expect(editor.wrapper.find('.simditor-toolbar')).toExist();
-      return expect(editor.wrapper.find('.simditor-toolbar  >ul > li >.toolbar-item').length).toBe(toolbar.length);
     });
     return it('should find correct button when call findButton', function() {
       expect(editor.toolbar.findButton('bold').name).toBe('bold');

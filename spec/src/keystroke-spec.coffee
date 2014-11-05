@@ -89,3 +89,9 @@ describe 'Simditor Keystroke Module', ->
     expect(editor.body.find('pre')).not.toExist()
 
   #TODO: fix li went strange
+
+  it 'can trigger custom key stroke', ->
+    tmpCallback = ->
+      console.log 'this is a test'
+    editor.inputManager.addKeystrokeHandler 13, 'ele', tmpCallback
+    expect(editor.inputManager._keystrokeHandlers[13]?['ele']).toBe(tmpCallback)

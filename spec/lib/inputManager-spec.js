@@ -18,14 +18,6 @@
       expect(editor.el.find('.simditor-paste-area')).toExist();
       return expect(editor.el.find('.simditor-clean-paste-area')).toExist();
     });
-    it('can add key stroke to its instance', function() {
-      var tmpCallback, _ref;
-      tmpCallback = function() {
-        return console.log('this is a test');
-      };
-      editor.inputManager.addKeystrokeHandler(13, 'ele', tmpCallback);
-      return expect((_ref = editor.inputManager._keystrokeHandlers[13]) != null ? _ref['ele'] : void 0).toBe(tmpCallback);
-    });
     it('should add focus class when editor focus', function() {
       var spyEvent;
       spyEvent = spyOnEvent(editor, 'selectionchanged');
@@ -69,7 +61,7 @@
       triggerKey(15);
       return expect(KeyStrokeCalled).toBeTruthy();
     });
-    return it('should ensure editor\' body has content when keyup', function() {
+    return it('should ensure editor\' body has default value at least when keyup', function() {
       var e;
       editor.body.empty();
       editor.focus();

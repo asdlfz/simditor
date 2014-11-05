@@ -12,12 +12,6 @@ describe 'Simditor InputManager Module', ->
     expect(editor.el.find('.simditor-paste-area')).toExist()
     expect(editor.el.find('.simditor-clean-paste-area')).toExist()
 
-  it 'can add key stroke to its instance', ->
-    tmpCallback = ->
-      console.log 'this is a test'
-    editor.inputManager.addKeystrokeHandler 13, 'ele', tmpCallback
-    expect(editor.inputManager._keystrokeHandlers[13]?['ele']).toBe(tmpCallback)
-
   it 'should add focus class when editor focus', ->
     spyEvent = spyOnEvent(editor, 'selectionchanged')
 
@@ -57,7 +51,7 @@ describe 'Simditor InputManager Module', ->
 
     #TODO: add typing
 
-  it 'should ensure editor\' body has content when keyup', ->
+  it 'should ensure editor\' body has default value at least when keyup', ->
     editor.body.empty()
     editor.focus()
     e = $.Event('keyup', {which: 8, keyCode:8})
